@@ -77,35 +77,48 @@ using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    string mail = "admin@admin.admin";
+    string mailAdmin = "admin@admin.admin";
     string password = "a!A123456789";
+    string mailUser = "user@user.com";
 
-    if (await userManager.FindByEmailAsync(mail) == null)
+    if (await userManager.FindByEmailAsync(mailAdmin) == null)
     {
         var user = new IdentityUser
         {
-            UserName = mail,
-            Email = mail,
+            UserName = mailAdmin,
+            Email = mailAdmin,
             EmailConfirmed = true
         };
 
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "Admin");
     }
-    password = "a!A123456789";
+
+    if (await userManager.FindByEmailAsync(mailUser) == null)
+    {
+        var user = new IdentityUser
+        {
+            UserName = mailUser,
+            Email = mailUser,
+            EmailConfirmed = true
+        };
+
+        await userManager.CreateAsync(user, password);
+        await userManager.AddToRoleAsync(user, "User");
+    }
 
     for (int i = 0; i < 5; i++)
     {
         var user = new IdentityUser
         {
-            UserName = $"user{i}",
+            UserName = $"user{i}@user.com",
             Email = $"user{i}@user.com",
             EmailConfirmed = true
         };
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "User");
     }
-    password = "a!A123456789";
+   
 }
 
 app.Run();

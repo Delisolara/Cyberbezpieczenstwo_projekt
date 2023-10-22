@@ -93,5 +93,28 @@ namespace CyberBez_proj.Controllers
             }
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(string userId)
+        {
+            var users = await _userManager.Users.ToListAsync();
+            var userRolesViewModel = new List<UserRolesViewModel>();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return View(userRolesViewModel);
+                }
+                else
+                {
+
+                    return View(userRolesViewModel);
+                }
+            }
+            return View();
+
+            //return RedirectToPage("List");
+        }
     }
 }
