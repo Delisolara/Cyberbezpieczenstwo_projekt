@@ -71,6 +71,38 @@ namespace CyberBez_proj.Controllers
             return View(model);
         }
 
+        //public async Task<IActionResult> Lock(string Id)
+        //{
+        //    if (Id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var appUser = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == Id);
+        //    if (appUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    appUser.LockoutEnd = DateTime.Now.AddYears(1);
+        //    return RedirectToAction("Index");
+        //}
+
+        //public async Task<IActionResult> Unlock(string Id)
+        //{
+        //    if (Id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var appUser = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == Id);
+        //    if (appUser == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    appUser.LockoutEnd = DateTime.Now;
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {

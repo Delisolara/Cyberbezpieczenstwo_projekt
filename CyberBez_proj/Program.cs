@@ -23,6 +23,11 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 12;
 });
 
+builder.Services.Configure<PasswordHasherOptions>(option =>
+{
+    option.IterationCount = 12000;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
