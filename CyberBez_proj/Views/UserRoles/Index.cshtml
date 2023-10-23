@@ -4,7 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>User Roles</h1>
+<h1>User List</h1>
+<a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Add user</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -27,7 +28,7 @@
                 </td>
                 <td>
                     <form method="post" asp-action="Delete" asp-route-userId="@user.UserID">
-                        <button type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
                 </td>
             </tr>

@@ -1,4 +1,5 @@
-﻿using CyberBez_proj.Models;
+﻿using CyberBez_proj.Areas.Identity.Pages.Account;
+using CyberBez_proj.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -93,28 +94,32 @@ namespace CyberBez_proj.Controllers
             }
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string userId)
         {
-            var users = await _userManager.Users.ToListAsync();
-            var userRolesViewModel = new List<UserRolesViewModel>();
             var user = await _userManager.FindByIdAsync(userId);
-            if (user != null)
+            if(user == null)
+            {
+                ViewBag.ErrorMessage = $"User with ID = {userId} cannot be found";
+                return View("NotFound");
+            }
+            else
             {
                 var result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
+                if(result.Succeeded)
                 {
-                    return View(userRolesViewModel);
+                    return RedirectToAction("Index");
                 }
-                else
-                {
 
-                    return View(userRolesViewModel);
+                foreach(var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
                 }
+
+                return RedirectToAction("Index");
             }
-            return View();
-
-            //return RedirectToPage("List");
+            
         }
     }
 }
