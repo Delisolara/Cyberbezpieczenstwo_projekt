@@ -21,6 +21,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 12;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
 });
 
 builder.Services.Configure<PasswordHasherOptions>(option =>
