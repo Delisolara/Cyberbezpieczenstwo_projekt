@@ -23,6 +23,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 12;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequireDigit = true;
+
+    //Blokowanie u¿ytkowników na 15 min po wpisaniu Ÿle has³a 5 razy
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
 });
 
 builder.Services.Configure<PasswordHasherOptions>(option =>
