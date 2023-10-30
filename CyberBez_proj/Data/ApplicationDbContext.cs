@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CyberBez_proj.Models;
 
 namespace CyberBez_proj.Data
 {
@@ -9,5 +10,6 @@ namespace CyberBez_proj.Data
             : base(options)
         {
         }
+        public DbSet<Log> logs { get; set; }
     }
 }

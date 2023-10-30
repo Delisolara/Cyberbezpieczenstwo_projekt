@@ -34,6 +34,9 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
     option.IterationCount = 12000;
 });
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
