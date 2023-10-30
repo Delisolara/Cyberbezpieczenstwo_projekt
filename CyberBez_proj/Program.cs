@@ -34,6 +34,12 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
     option.IterationCount = 12000;
 });
 
+builder.Services.ConfigureApplicationCookie(options => {
+    options.Cookie.Name = "AspNetCore.Identity.Application";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+    options.SlidingExpiration = true;
+});
+
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
