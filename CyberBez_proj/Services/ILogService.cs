@@ -8,8 +8,8 @@ namespace CyberBez_proj.Services
     public interface ILogService
     {
         void Add(string actionexecutedBy, string userId, string action, bool isSuccessful);
-        List<Log> GetAllLogs();
-        List<Log> GetUserLogs(string userId);
+        List<LogViewModel> GetAllLogs();
+        List<LogViewModel> GetUserLogs(string userId);
     }
     public class LogService : ILogService
     {
@@ -22,7 +22,7 @@ namespace CyberBez_proj.Services
 
         public void Add(string actionexecutedBy, string userId, string action, bool isSuccessful)
         {
-            var log = new Log
+            var log = new LogViewModel
             {
                 UserID = userId,
                 ActionExecutedBy = actionexecutedBy,
@@ -34,12 +34,12 @@ namespace CyberBez_proj.Services
             _context.logs.Add(log);
             _context.SaveChanges();
         }
-            public List<Log> GetAllLogs()
+            public List<LogViewModel> GetAllLogs()
             {
                 return _context.logs.ToList();
             }
 
-            public List<Log> GetUserLogs(string userId)
+            public List<LogViewModel> GetUserLogs(string userId)
             {
                 return _context.logs.Where(log => log.UserID == userId).ToList();
             }

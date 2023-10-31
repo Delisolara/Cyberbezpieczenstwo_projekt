@@ -10,6 +10,6 @@ namespace CyberBez_proj.Data
             : base(options)
         {
         }
-        public DbSet<Log> logs { get; set; }
+        public DbSet<LogViewModel> logs { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CyberBez_proj.Models
 {
-    public class Log
+    public class LogViewModel
     {
         [Key] 
         public int Id { get; set; }
