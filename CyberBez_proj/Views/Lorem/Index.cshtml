@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Lorem Ipsum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label for="userId">UserName:</label>
+        <input type="text" id="userId" name="userId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Generate One-Time Password</button>
+</form>
+
+@if (ViewBag.OneTimePassword != null)
+{
+    <div class="alert alert-success mt-3">
+        One-Time Password: @ViewBag.OneTimePassword
+    </div>
+}

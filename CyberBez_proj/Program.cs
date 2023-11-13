@@ -30,14 +30,14 @@ public class Program {
             .AbsoluteExpiration(minutes: 7)
             .ShowThousandsSeparators(false)
             .WithEncryptionKey("This is my secure key!")
-            .InputNames(// This is optional. Change it if you don't like the default names.
+            .InputNames(
                 new DNTCaptchaComponent
                 {
                     CaptchaHiddenInputName = "DNT_CaptchaText",
                     CaptchaHiddenTokenName = "DNT_CaptchaToken",
                     CaptchaInputName = "DNT_CaptchaInputText"
                 })
-            .Identifier("dnt_Captcha")// This is optional. Change it if you don't like its default name.
+            .Identifier("dnt_Captcha")
             ;
         });
 
